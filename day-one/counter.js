@@ -2,48 +2,63 @@ class Counter extends React.Component {
 	constructor(){
 		super();
 
+		//here we initialize the state
 		this.state = {
 			counter: 0
 		}
 	}
 
+	//the method that increment the counter state by 1
 	incrementCounter = () => {
-		this.setState(prevState => { 
-			return {
-				counter: prevState.counter ++
-			}
-		});
+		this.setState(prevState => ({ counter: prevState.counter+1 }));
 	}
 
+	//the method that decrement the counter state by 1
 	decrementCounter = () => {
-		this.setState(prevState => { 
-			return {
-				counter: prevState.counter --
-			}
-		});
+		this.setState(prevState => ({ counter: prevState.counter-1 }));
 	}
-
+	//render method which renders what we see
 	render(){
 		const counterStyle = {
+			width: '30%',
 			padding: '50px',
-			borderRadius: '10px'
+			borderColor: 'green',
+			borderRadius: '10px',
+			backgroundColor: '#3ec358',
+			color: '#fff',
+			textAlign: 'center'
 		}
 		return (
 			<div style={counterStyle}>
-				<span>{this.state.counter}</span>
-				<Button 
-					onClick={this.incrementCounter}
-					text="+"/>
+				<h2>Counter</h2>
+				<h1>{this.state.counter}</h1>
 				<Button 
 					onClick={this.decrementCounter}
-					text="-"/>
+					text="-"
+				/>
+				<Button 
+					onClick={this.incrementCounter}
+					text="+"
+				/>
 			</div>
 		)
 	}
 }
 
-const Button = (onClick, text) => {
-	return <button onClick={onClick}>{text}</button>
+//The component that renders the button
+const Button = ({onClick, text}) => {
+	const buttonStyle={
+		width: '4em',
+		padding: '1em',
+		backgroundColor: 'white',
+		fontSize: 20,
+		borderRadius: '50%',
+		cursor: 'pointer'
+	}
+	return <button 
+				onClick={onClick}
+				style={buttonStyle}
+			>{text}</button>
 }
 
 ReactDOM.render(<Counter />, document.getElementById('container'))

@@ -1,0 +1,58 @@
+<!Doctype html>
+<html>
+	<head>
+		<title>React App</title>
+	</head>
+	<body>
+		<div id="container"></div>
+	</body>
+	<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+	<script type="text/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+	<script type="text/babel">
+		function CardContainer(){
+			return (
+				<div>
+					<Card color="green"/>
+					<Card color="blue"/>
+					<Card color="black"/>
+				</div>
+			)
+		}
+
+		function Card(props){
+			const cardStyle={
+				height:'220px',
+				width: '200px',
+				border: '2px solid red',
+				borderRadius: '10px',
+			}
+			return (
+				<div style={cardStyle}>
+					<Color color={props.color} />
+					<Label color={props.color} />
+				</div>
+			)
+		}
+
+		function Color(props){
+			const colorStyle= {
+				height: '180px',
+				width: '200px',
+				backgroundColor: props.color,
+			}
+			return <div style={colorStyle}></div>
+		}
+
+		function Label(props) {
+			const labelStyle={
+				textAlign: 'center',
+				fontFamily: 'segoe ui'
+			}
+			return <p style={labelStyle} >{props.color}</p>
+		}
+
+		ReactDOM.render(<CardContainer />, document.getElementById('container'))
+	</script>
+</html>
